@@ -1,0 +1,27 @@
+Statistics4DS/
+├── .git/                     # Git repository metadata
+├── .gitignore                # Specifies files/folders to ignore in Git
+├── LICENSE                   # License file for the project
+├── README                    # Project documentation
+├── renv/                     # Directory created by renv for package management
+│   ├── library               # Installed packages (optional to include in Git)
+│   ├── staging               # Temporary staging area for package installation
+│   ├── activate.R            # Activation script for renv
+│   └── settings.json         # Configuration settings for renv
+├── renv.lock                 # Lock file for renv package management
+├── dependencies.yml          # YAML file for dependencies
+├── resources/                # Main directory for all supporting materials
+│   ├── references/           # Subdirectory for citation files
+│   ├── sources/              # Subdirectory for other source materials
+│   ├── past_projects/        # Subdirectory for previous project files
+│   └── supporting_literature/ # Optionally include this if you want to keep it separate
+├── _project/                 # Directory for your R project files
+│   ├── .Rproj                # RStudio project file
+│   ├── _figures/             # Directory for output figures from visualizations
+│   └── _scripts/             # Directory for organizing scripts
+│       ├── _analysis/        # Scripts for analysis
+│       ├── _markdown/        # Scripts for generating markdown reports
+│       ├── _preprocessing/   # Scripts for data pre-processing
+│       └── _visualizations/  # Scripts for creating visualizations
+|
+|── project_tree              # This file
