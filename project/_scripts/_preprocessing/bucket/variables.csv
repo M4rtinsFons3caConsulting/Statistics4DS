@@ -1,50 +1,24 @@
-var_name,from_central,from_gov_agencies,from_industry_reports,from_energy_providers,R package install
-Income Levels,1,0,0,0,
-Economic Growth (GDP),1,0,0,0,
-Interest Rates,1,0,0,0,
-Inflation Rates,1,0,0,0,
-Consumer Confidence,1,0,0,0,
-Credit Availability,1,0,0,0,
-Exchange Rates,1,0,0,0,install.packages(‘priceR’)
-Fuel Prices (Gasoline and Oil),0,0,0,1,install.packages(‘priceR’)
-Government Incentives and Subsidies,0,1,0,0,
-Public Charging Stations Availability,0,1,1,1,
-Population Growth and Urbanization Trends,0,1,0,0,
-VanEck Vectors Rare Earth/Strategic Metals ETF,0,0,1,0,install.packages(‘priceR’)
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-,,,,,
-### List of Key Economic and Energy Variables,,,,,
-,,,,,
-#### Macroeconomic Indicators,,,,,
-1. **Gross Domestic Product (GDP) Growth Rate**,,,,,
-2. **Inflation Rate**,,,,,
-3. **Consumer Price Index (CPI)**,,,,,
-4. **Interest Rates**,,,,,
-5. **Unemployment Rate**,,,,,
-,,,,,
-#### Energy and Commodity Prices,,,,,
-6. **Crude Oil Prices**,,,,,
-7. **Gasoline Price Index**,,,,,
-8. **Cost per kWh**,,,,,
-9. **Cost of Lithium-Ion Batteries**,,,,,
-10. **Cost of Sodium-Ion Batteries**,,,,,
-,,,,,
-#### Financial Markets,,,,,
-11. **Exchange Rate (Local Currency to USD)**,,,,,
-12. **VanEck Rare Earth and Strategic Metals ETF (REMX)**,,,,,
-,,,,,
-#### Electric Vehicle Metrics,,,,,
-13. **Total Electric Vehicle (EV) Sales**,,,,,
-14. **Total Vehicle Sales**,,,,,
-15. **Total EV Stock**,,,,,
-,,,,,
-16. Subsidies ,,,,,
-17. Tariffs,,,,,
-https://autovista24.autovistagroup.com/news/what-is-in-store-for-used-bevs/,,,,,
+var_name,var_category,call:’call’ install.package(‘call’),REST API ,Website,Custom
+Household Income,Macroeconomic Indicators,"[""fredr"", ""BOE"", ""rbcb"", ""ecb"", ""readrba"", ""BOJ"", ""SNBdata""]",Null,Null,0
+Gross Domestic Product (GDP),Macroeconomic Indicators,"[""fredr"", ""BOE"", ""rbcb"", ""ecb"", ""readrba"", ""BOJ"", ""SNBdata""]",Null,Null,0
+Interest Rate,Macroeconomic Indicators,"[""fredr"", ""BOE"", ""rbcb"", ""ecb"", ""readrba"", ""BOJ"", ""SNBdata""]",Null,Null,0
+Inflation Rate,Macroeconomic Indicators,"[""fredr"", ""BOE"", ""rbcb"", ""ecb"", ""readrba"", ""BOJ"", ""SNBdata""]",Null,Null,0
+Consumer Confidence,Macroeconomic Indicators,"[""fredr"", ""BOE"", ""rbcb"", ""ecb"", ""readrba"", ""BOJ"", ""SNBdata""]",Null,Null,0
+Consumer Credit,Macroeconomic Indicators,"[""fredr"", ""BOE"", ""rbcb"", ""ecb"", ""readrba"", ""BOJ"", ""'SNBdata', repos = c('http://enricoschumann.net/R', getOption('repos'))""]",Null,Null,0
+Exchange Rates,Macroeconomic Indicators,“priceR”,Null,Null,0
+Gasoline Price,Energy and Commodity Prices,“priceR”,Null,Null,0
+Crude Oil,Energy and Commodity Prices,“priceR”,Null,Null,0
+Natural Gas,Energy and Commodity Prices,“priceR”,Null,Null,0
+Coal ,Energy and Commodity Prices,“priceR”,Null,Null,0
+Liquified Natural Gas,Energy and Commodity Prices,“priceR”,Null,Null,0
+Cost per kWh,Energy and Commodity Prices,Null,Null,Null,1
+Lithium Price,Energy and Commodity Prices,“priceR”,Null,Null,0
+Nickel Price,Energy and Commodity Prices,“priceR”,Null,Null,0
+VanEck Rare Earth and Strategic Metals ETF (REMX),Financial Markets,“priceR”,Null,Null,0
+Total Electric Vehicle (EV) Sales,Electric Vehicle Metrics,Null,Null,Markline,0
+Total Vehicle Sales,Electric Vehicle Metrics,Null,Null,Markline,0
+Total EV Stock,Electric Vehicle Metrics,Null,Null,Markline,0
+Government Incentives and Subsidies,Government Policies,Null,Null,Null,1
+Urbanization Trends,Government Policies,Null,Null,Null,1
+Tariffs,Trade and Tariffs,"""tradestatistics”",Null,Null,0
+Search,Query,“imfr”,,,
