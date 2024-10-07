@@ -32,7 +32,6 @@ Statistics4DS/
 │       ├── _markdown/        # Scripts for generating markdown reports  
 │       ├── _preprocessing/   # Scripts for data preprocessing  
 │       └── _visualizations/   # Scripts that create visualizations  
-└── project_tree              # This file  
 ```
 
 ## Installation of `renv`
