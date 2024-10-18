@@ -806,6 +806,141 @@ View(unemp_rate)
 write.csv(unemp_rate, file = "../processed/unemployment_rate.csv", row.names = FALSE)
 
 
+###################################### Coal ####################################
+
+file_path <- paste0("./other/Coal.csv")
+
+# Read the file
+curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+# Split the date column into Year, Month, and Day
+curr_data <- curr_data %>%
+  separate(Date, into = c("Month", "Year"), sep = "-") %>%
+  mutate(Month = match(Month, month.abb)) %>%
+  select(Year, Month, Value)
+
+# Rename the columns
+colnames(curr_data) <- c("Year", "Month", "Coal")
+
+View(curr_data)
+
+# Save the combined data to a CSV file
+write.csv(curr_data, file = "../processed/coal.csv", row.names = FALSE)
+
+
+#################################### Lithium ###################################
+
+file_path <- paste0("./other/Lithium.csv")
+
+# Read the file
+curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+curr_data <- curr_data %>%
+  select(Date, Open) %>%
+  separate(Date, into=c("Month", "Day", "Year"), sep = " ") %>%
+  filter(Day == "1,") %>%
+  select(Year, Month, Open) %>%
+  mutate(Month = match(Month, month.abb))
+
+colnames(curr_data) <- c("Year", "Month", "Lithium")
+
+View(curr_data)
+
+# Save the combined data to a CSV file
+write.csv(curr_data, file = "../processed/lithium.csv", row.names = FALSE)
+
+################################## Natural Gas #################################
+
+file_path <- paste0("./other/NaturalGas.csv")
+
+# Read the file
+curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+curr_data <- curr_data %>%
+  select(Date, Open) %>%
+  separate(Date, into=c("Month", "Day", "Year"), sep = " ") %>%
+  filter(Day == "1,") %>%
+  select(Year, Month, Open) %>%
+  mutate(Month = match(Month, month.abb))
+
+colnames(curr_data) <- c("Year", "Month", "Natural Gas")
+
+View(curr_data)
+
+# Save the combined data to a CSV file
+write.csv(curr_data, file = "../processed/natural_gas.csv", row.names = FALSE)
+
+##################################### Nickel ###################################
+
+file_path <- paste0("./other/Nickel.csv")
+
+# Read the file
+curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+curr_data <- curr_data %>%
+  separate(Date, into=c("Month", "Day", "Year"), sep = " ") %>%
+  select(Year, Month, Value) %>%
+  filter(Year >= 2022) %>%
+  mutate(Month = match(Month, month.name))
+
+colnames(curr_data) <- c("Year", "Month", "Nickel")
+
+View(curr_data)
+
+# Save the combined data to a CSV file
+write.csv(curr_data, file = "../processed/nickel.csv", row.names = FALSE)
+
+################################# Rare Earths ETF ##############################
+
+file_path <- paste0("./other/RareEarthETF.csv")
+
+# Read the file
+curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+curr_data <- curr_data %>%
+  select(Date, Open) %>%
+  separate(Date, into=c("Month", "Day", "Year"), sep = " ") %>%
+  filter(Day == "1,") %>%
+  select(Year, Month, Open) %>%
+  mutate(Month = match(Month, month.abb))
+
+colnames(curr_data) <- c("Year", "Month", "Rare Earth ETF")
+
+View(curr_data)
+
+################################ MISSING MONTHS! ###############################
+
+# Save the combined data to a CSV file
+write.csv(curr_data, file = "../processed/rare_earth.csv", row.names = FALSE)
+
+##################################### Tariffs ##################################
+
+file_path <- paste0("./other/Tariffs.csv")
+
+# Read the file
+curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+countries <- list(
+  "United States" = "US",
+  "United Kingdom" = "UK",
+  "Canada" = "CA",
+  "European Union" = "EU", 
+  "South Korea" = "KR",
+  "Australia" = "AU",
+  "Japan" = "JP",
+  "Switzerland" = "CH",
+  "New Zealand" = "NZ",
+  "Norway" = "NO"
+)
+
+curr_data <- curr_data %>%
+  mutate(Country = recode(Country, !!!countries))
+
+View(curr_data)
+
+# Save the combined data to a CSV file
+write.csv(curr_data, file = "../processed/tariffs.csv", row.names = FALSE)
+
 
 
 
