@@ -325,7 +325,8 @@ for (code in names(other)) {
   # Split the date column into Year, Month, and Day
   curr_data <- curr_data %>%
     separate(Date, into = c("Month", "Day", "Year"), sep = " ", remove = FALSE) %>%
-    select(Year, Month, Value)
+    select(Year, Month, Value) %>%
+    mutate(Month = match(Month, month.name), across(c(Month, Year), as.integer))
   
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "CPI")
@@ -354,7 +355,8 @@ write.csv(cpi, file = "../processed/inflation_rate.csv", row.names = FALSE)
 date_w_day <- list(
   "US" = "USA",
   "KR" = "SouthKorea",
-  "EU" = "EU"
+  "EU" = "EU",
+  "DE" = "EU"
 )
 
 date_no_day <- list(
@@ -394,7 +396,8 @@ for (code in names(date_w_day)) {
   curr_data <- curr_data %>%
     separate(DATE, into = c("Year", "Month", "Day"), sep = "-") %>%
     select(-Day) %>%
-    mutate(Month = as.integer(Month))
+    mutate(Month = as.integer(Month)) %>%
+    filter(!(Year == 2024 & Month == 10))
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Interest Rate")
@@ -509,17 +512,29 @@ for (code in names(au)) {
     separate(Effective.Date, into = c("Day", "Month", "Year"), sep = " ") %>%
     select(Year, Month, Cash.rate.target..) %>%
     filter(Year %in% c(2022, 2023, 2024)) %>%
-    mutate(Month = match(Month, month.abb))
+    mutate(Month = match(Month, month.abb), Year = as.integer(Year))
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Interest Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after September 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month)
+  
+  complete_months <- complete_months %>%
+    select(Year, Month, "Interest Rate") %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill("Interest Rate", .direction = "up")
   
   # Store the processed data frame in the list
-  int_rate_data_list[[code]] <- curr_data
+  int_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(nz)) {
@@ -544,7 +559,7 @@ for (code in names(nz)) {
   curr_data <- curr_data %>%
     select(Year, Month, "Interest Rate") %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) 
   
   # Store the processed data frame in the list
   int_rate_data_list[[code]] <- curr_data
@@ -640,6 +655,7 @@ for (code in names(au)) {
   colnames(curr_data) <- c("Year", "Month", "Unemployment Rate")
 
   curr_data <- curr_data %>%
+    fill("Unemployment Rate", .direction = "up") %>%
     mutate(Country = code) %>%  # Add the country code column
     relocate(Country, .before = Year)
   
@@ -808,6 +824,10 @@ write.csv(unemp_rate, file = "../processed/unemployment_rate.csv", row.names = F
 
 ###################################### Coal ####################################
 
+countries <- list(
+  "AU", "CA", "EU", "DE", "JP", "NZ", "NO", "KR", "CH", "UK", "US"
+)
+
 file_path <- paste0("./other/Coal.csv")
 
 # Read the file
@@ -822,10 +842,22 @@ curr_data <- curr_data %>%
 # Rename the columns
 colnames(curr_data) <- c("Year", "Month", "Coal")
 
-View(curr_data)
+coal_data_list <- list()
+
+for (country in countries) {
+  df <- curr_data %>%
+    mutate(Country = country) %>%  # Add the country code column
+    relocate(Country, .before = Year)
+  
+  coal_data_list[[country]] <- df
+}
+
+coal <- do.call(rbind, coal_data_list)
+
+View(coal)
 
 # Save the combined data to a CSV file
-write.csv(curr_data, file = "../processed/coal.csv", row.names = FALSE)
+write.csv(coal, file = "../processed/coal.csv", row.names = FALSE)
 
 
 #################################### Lithium ###################################
@@ -844,10 +876,22 @@ curr_data <- curr_data %>%
 
 colnames(curr_data) <- c("Year", "Month", "Lithium")
 
-View(curr_data)
+lithium_data_list <- list()
+
+for (country in countries) {
+  df <- curr_data %>%
+    mutate(Country = country) %>%  # Add the country code column
+    relocate(Country, .before = Year)
+  
+  lithium_data_list[[country]] <- df
+}
+
+lithium <- do.call(rbind, lithium_data_list)
+
+View(lithium)
 
 # Save the combined data to a CSV file
-write.csv(curr_data, file = "../processed/lithium.csv", row.names = FALSE)
+write.csv(lithium, file = "../processed/lithium.csv", row.names = FALSE)
 
 ################################## Natural Gas #################################
 
@@ -859,16 +903,31 @@ curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
 curr_data <- curr_data %>%
   select(Date, Open) %>%
   separate(Date, into=c("Month", "Day", "Year"), sep = " ") %>%
-  filter(Day == "1,") %>%
+  mutate(Day = as.integer(gsub(",$", "", Day))) %>%
+  group_by(Year, Month) %>%
+  slice_min(Day, n=1) %>%
+  ungroup() %>%
   select(Year, Month, Open) %>%
   mutate(Month = match(Month, month.abb))
 
 colnames(curr_data) <- c("Year", "Month", "Natural Gas")
 
-View(curr_data)
+natural_gas_data_list <- list()
+
+for (country in countries) {
+  df <- curr_data %>%
+    mutate(Country = country) %>%  # Add the country code column
+    relocate(Country, .before = Year)
+  
+  natural_gas_data_list[[country]] <- df
+}
+
+natural_gas <- do.call(rbind, natural_gas_data_list)
+
+View(natural_gas)
 
 # Save the combined data to a CSV file
-write.csv(curr_data, file = "../processed/natural_gas.csv", row.names = FALSE)
+write.csv(natural_gas, file = "../processed/natural_gas.csv", row.names = FALSE)
 
 ##################################### Nickel ###################################
 
@@ -885,10 +944,22 @@ curr_data <- curr_data %>%
 
 colnames(curr_data) <- c("Year", "Month", "Nickel")
 
-View(curr_data)
+nickel_data_list <- list()
+
+for (country in countries) {
+  df <- curr_data %>%
+    mutate(Country = country) %>%  # Add the country code column
+    relocate(Country, .before = Year)
+  
+  nickel_data_list[[country]] <- df
+}
+
+nickel <- do.call(rbind, nickel_data_list)
+
+View(nickel)
 
 # Save the combined data to a CSV file
-write.csv(curr_data, file = "../processed/nickel.csv", row.names = FALSE)
+write.csv(nickel, file = "../processed/nickel.csv", row.names = FALSE)
 
 ################################# Rare Earths ETF ##############################
 
@@ -900,18 +971,31 @@ curr_data <- read.csv(file_path, stringsAsFactors = FALSE)
 curr_data <- curr_data %>%
   select(Date, Open) %>%
   separate(Date, into=c("Month", "Day", "Year"), sep = " ") %>%
-  filter(Day == "1,") %>%
+  mutate(Day = as.integer(gsub(",$", "", Day))) %>%
+  group_by(Year, Month) %>%
+  slice_min(Day, n=1) %>%
+  ungroup() %>%
   select(Year, Month, Open) %>%
   mutate(Month = match(Month, month.abb))
 
 colnames(curr_data) <- c("Year", "Month", "Rare Earth ETF")
 
-View(curr_data)
+rare_earth_data_list <- list()
 
-################################ MISSING MONTHS! ###############################
+for (country in countries) {
+  df <- curr_data %>%
+    mutate(Country = country) %>%  # Add the country code column
+    relocate(Country, .before = Year)
+  
+  rare_earth_data_list[[country]] <- df
+}
+
+rare_earth <- do.call(rbind, rare_earth_data_list)
+
+View(rare_earth)
 
 # Save the combined data to a CSV file
-write.csv(curr_data, file = "../processed/rare_earth.csv", row.names = FALSE)
+write.csv(rare_earth, file = "../processed/rare_earth_etf.csv", row.names = FALSE)
 
 ##################################### Tariffs ##################################
 
@@ -940,9 +1024,3 @@ View(curr_data)
 
 # Save the combined data to a CSV file
 write.csv(curr_data, file = "../processed/tariffs.csv", row.names = FALSE)
-
-
-
-
-
-
