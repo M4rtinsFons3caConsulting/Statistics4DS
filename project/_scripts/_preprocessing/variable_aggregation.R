@@ -1008,7 +1008,7 @@ countries <- list(
   "United States" = "US",
   "United Kingdom" = "UK",
   "Canada" = "CA",
-  "European Union" = "EU", 
+  "European Union" = "EU",
   "South Korea" = "KR",
   "Australia" = "AU",
   "Japan" = "JP",
@@ -1017,10 +1017,38 @@ countries <- list(
   "Norway" = "NO"
 )
 
-curr_data <- curr_data %>%
-  mutate(Country = recode(Country, !!!countries))
+  
+start_date <- ymd("2022-01-01")
+end_date <- ymd("2024-09-30")
+months_seq <- seq.Date(from = start_date, to = end_date, by = "month")
 
-View(curr_data)
+# Convert to "year-month" format for merging
+months_seq_df <- data.frame(Date = format(months_seq, "%b-%Y"))
+
+# Step 2: Create a data frame with all combinations of countries and complete dates
+complete_data <- expand.grid(Date = months_seq_df$Date, Country = unique(curr_data$Country))
+
+# Step 3: Merge with the original data to fill in Tariff values
+final_data <- complete_data %>%
+  left_join(curr_data, by = c("Date", "Country")) %>%
+  arrange(Country, Date) %>%
+  separate(Date, into=c("Month", "Year"), sep="-") %>%
+  mutate(Month = match(Month, month.abb), Year = as.integer(Year)) %>%
+  mutate(Country = recode(Country, !!!countries)) %>%
+  select(Country, Year, Month, Tariff) %>%
+  arrange(Country, Year, Month) %>%
+  fill(Tariff, .direction = "down")
+
+de_data <- final_data %>%
+  filter(Country == "EU") %>%
+  mutate(Country = "DE")
+
+final_data <- final_data %>%
+  bind_rows(de_data)
+
+colnames(final_data) = c("Country", "Year", "Month", "EV Import Tariff")
+
+View(final_data)
 
 # Save the combined data to a CSV file
-write.csv(curr_data, file = "../processed/tariffs.csv", row.names = FALSE)
+write.csv(final_data, file = "../processed/tariffs.csv", row.names = FALSE)

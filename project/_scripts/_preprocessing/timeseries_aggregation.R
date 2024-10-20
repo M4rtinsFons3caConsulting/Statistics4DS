@@ -4,11 +4,7 @@ library(purrr)
 # Setting the working directory
 setwd("/home/shadybea/OneDrive/General/Statistics 4 Data Science/data/processed")
 
-features <- list.files(path = getwd(), pattern = "\\.csv$", full.names = FALSE) %>%
-  as.data.frame(stringsAsFactors = FALSE) %>%
-  rename(value = 1) %>%  # Rename the first column to 'value'
-  filter(value != "tariffs.csv") %>%  # Compare directly with the filename
-  pull(value)
+features <- list.files(path = getwd(), pattern = "\\.csv$", full.names = FALSE)
 
 data_list <- lapply(features, read.csv, stringsAsFactors = FALSE)
 
