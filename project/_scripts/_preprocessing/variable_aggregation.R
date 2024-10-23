@@ -136,12 +136,12 @@ for (code in names(nz)) {
     separate(Date, into = c("Month", "Year"), sep = " ") %>%
     mutate(Month = match(Month, month.abb), Year = as.integer(Year)) %>%
     select(Year, Month, Value) %>%
-    filter(Year >= 2022)
+    filter(Year >= 2021)
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "GDP")
   
-  full_years = 2022:2024
+  full_years = 2021:2024
   # Ensure Year and Month are treated as character values
   complete_months <- expand.grid(
     Year = full_years,
@@ -151,6 +151,7 @@ for (code in names(nz)) {
     left_join(curr_data, by = c("Year", "Month")) %>%  # Join with the current data
     arrange(Year, Month) %>%  # Sort by Year and Month
     fill(GDP, .direction = "down") %>%  # Fill missing values downward
+    filter(Year >= 2022) %>%
     mutate(Country = code) %>%  # Add the country code column
     relocate(Country, .before = Year)  # Move the Country column before Year
   
@@ -213,14 +214,23 @@ for (code in names(trd_econ_month)) {
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "CPI")
   
-  curr_data <- curr_data %>%
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate("Monthly Inflation Rate" = (CPI - lag(CPI)) / lag(CPI) * 100) %>%
     select(-CPI) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Country", "Monthly Inflation Rate"), .direction = "down")
   
   # Store the processed data frame in the list
-  cpi_data_list[[code]] <- curr_data
+  cpi_data_list[[code]] <- complete_months
 }
 
 # Loop through each item in the named list
@@ -248,9 +258,19 @@ for (code in names(trd_econ_quarter)) {
     Year = full_years,
     Month = as.integer(1:12)
   ) %>%
-    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after September 2024
+    filter(!(Year == 2024 & Month > 10)) %>%  # Filter out months after October 2024
     left_join(curr_data, by = c("Year", "Month")) %>%
     arrange(Year, Month)
+  
+  # we assume the growth of the next periods as the average growth of the previous 4 periods
+  growth <- list(
+    "AU" = 1.01,
+    "NZ" = 1.005
+  )
+  
+  complete_months <- complete_months %>%
+    mutate(CPI = ifelse(Year == 2024 & Month %in% c(7, 10) & code %in% names(growth),
+                        zoo::na.locf(CPI, na.rm = FALSE) * growth[[code]], CPI))
   
   # Fill missing CPI values using the logic from the Python code
   for (index in 1:nrow(complete_months)) {
@@ -260,26 +280,28 @@ for (code in names(trd_econ_quarter)) {
     } else {
       # Perform forward fill for the previous value
       previous_value <- zoo::na.locf(complete_months$CPI, na.rm = FALSE)[index]
-      
+
       # Perform backward fill for the next value
       next_value <- zoo::na.locf(complete_months$CPI, fromLast = TRUE, na.rm = FALSE)[index]
-      
+
       # Calculate alpha (difference divided by 3)
       alpha <- (next_value - previous_value) / 3
-      
+
       # Get the forward-filled CPI value (previous CPI)
       next_column_value <- zoo::na.locf(complete_months$CPI, na.rm = FALSE)[index] + alpha
-      
+
       # Assign the interpolated value to 'CPI'
       complete_months$CPI[index] <- next_column_value
     }
   }
-  
+
   complete_months <- complete_months %>%
+    filter(!(Year == 2024 & Month == 10)) %>%
     mutate("Monthly Inflation Rate" = (CPI - lag(CPI)) / lag(CPI) * 100) %>%
     select(-CPI) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Country", "Monthly Inflation Rate"), .direction = "down")
   
   # Store the processed data frame in the list
   cpi_data_list[[code]] <- complete_months
@@ -303,13 +325,22 @@ for (code in names(eurostat)) {
   # Rename the columns
   colnames(curr_data) <- c("Country", "Year", "Month", "CPI")
   
-  curr_data <- curr_data %>%
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate(Country = ifelse(Country == 'EU27_2020', "EU", Country)) %>%
     mutate("Monthly Inflation Rate" = (CPI - lag(CPI)) / lag(CPI) * 100) %>%
-    select(-CPI)
+    select(-CPI) %>%
+    fill(c("Country", "Monthly Inflation Rate"), .direction = "down")
   
   # Store the processed data frame in the list
-  cpi_data_list[[code]] <- curr_data
+  cpi_data_list[[code]] <- complete_months
   
 }
 
@@ -330,19 +361,32 @@ for (code in names(other)) {
   
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "CPI")
-   
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate("Monthly Inflation Rate" = (CPI - lag(CPI)) / lag(CPI) * 100) %>%
     select(-CPI) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Country", "Monthly Inflation Rate"), .direction = "down")
   
   # Store the processed data frame in the list
-  cpi_data_list[[code]] <- curr_data
+  cpi_data_list[[code]] <- complete_months
 }
 
 # Combine all the data frames into one
 cpi <- do.call(rbind, cpi_data_list)
+
+cpi <- cpi %>%
+  replace_na(list("Monthly Inflation Rate" = 0))
+  
 
 View(cpi)
 
@@ -396,18 +440,27 @@ for (code in names(date_w_day)) {
   curr_data <- curr_data %>%
     separate(DATE, into = c("Year", "Month", "Day"), sep = "-") %>%
     select(-Day) %>%
-    mutate(Month = as.integer(Month)) %>%
+    mutate(Month = as.integer(Month), Year = as.integer(Year)) %>%
     filter(!(Year == 2024 & Month == 10))
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Interest Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill("Interest Rate", .direction="down")
   
   # Store the processed data frame in the list
-  int_rate_data_list[[code]] <- curr_data
+  int_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(date_no_day)) {
@@ -448,17 +501,26 @@ for (code in names(three_col)) {
   curr_data <- curr_data %>%
     separate(Date, into = c("Year", "Month"), sep = "-") %>%
     select(-D0) %>%
-    mutate(Month = as.integer(Month))
+    mutate(Month = as.integer(Month), Year = as.integer(Year))
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Interest Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill("Interest Rate", .direction="down")
   
   # Store the processed data frame in the list
-  int_rate_data_list[[code]] <- curr_data
+  int_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(uk)) {
@@ -478,7 +540,7 @@ for (code in names(uk)) {
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Interest Rate")
   
-  full_years = as.integer(2022:2024)
+  full_years = as.integer(2021:2024)
   # Ensure Year and Month are treated as character values
   complete_months <- expand.grid(
     Year = full_years,
@@ -491,6 +553,7 @@ for (code in names(uk)) {
   complete_months$`Interest Rate` <- na.locf(complete_months$`Interest Rate`, na.rm=FALSE)
 
   complete_months <- complete_months %>%
+    filter(Year >= 2022) %>%
     mutate(Country = code) %>%  # Add the country code column
     relocate(Country, .before = Year)
   
@@ -628,11 +691,20 @@ for (code in names(ecb)) {
   # Rename the columns
   colnames(curr_data) <- c("Country", "Year", "Month", "Unemployment Rate")
   
-  curr_data <- curr_data %>%
-    mutate(Country = ifelse(Country == 'EU27_2020', "EU", Country))
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Country, Year, Month) %>%
+    mutate(Country = ifelse(Country == 'EU27_2020', "EU", Country)) %>%
+    fill(c("Unemployment Rate", "Country"), .direction = "down")
   
   # Store the processed data frame in the list
-  unemp_rate_data_list[[code]] <- curr_data
+  unemp_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(au)) {
@@ -653,14 +725,23 @@ for (code in names(au)) {
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Unemployment Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     fill("Unemployment Rate", .direction = "up") %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Unemployment Rate", "Country"), .direction = "down")
   
   # Store the processed data frame in the list
-  unemp_rate_data_list[[code]] <- curr_data
+  unemp_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(ca)) {
@@ -681,13 +762,22 @@ for (code in names(ca)) {
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Unemployment Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Unemployment Rate", "Country"), .direction = "down")
   
   # Store the processed data frame in the list
-  unemp_rate_data_list[[code]] <- curr_data
+  unemp_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(de)) {
@@ -704,17 +794,26 @@ for (code in names(de)) {
     separate(DATE, into = c("Year", "Month", "Day"), sep = "-") %>%
     select(-c(Day, TIME.PERIOD)) %>%
     filter(Year >= 2022) %>%
-    mutate(Month = as.integer(Month))
+    mutate(Month = as.integer(Month), Year = as.integer(Year))
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Unemployment Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Unemployment Rate", "Country"), .direction = "down")
   
   # Store the processed data frame in the list
-  unemp_rate_data_list[[code]] <- curr_data
+  unemp_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(nz)) {
@@ -731,12 +830,12 @@ for (code in names(nz)) {
     separate(Category, into = c("Month", "Year"), sep = "-") %>%
     mutate(Year = as.integer(paste0("20", Year)), Month = match(Month, month.abb)) %>%
     select(Year, Month, Total) %>%
-    filter(Year >= 2022)
+    filter(Year >= 2021 & Month >= 12)
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Unemployment Rate")
   
-  full_years = as.integer(2022:2024)
+  full_years = as.integer(2021:2024)
   # Ensure Year and Month are treated as character values
   complete_months <- expand.grid(
     Year = full_years,
@@ -749,8 +848,10 @@ for (code in names(nz)) {
   complete_months$`Unemployment Rate` <- na.locf(complete_months$`Unemployment Rate`, na.rm=FALSE)
 
   complete_months <- complete_months %>%
+    filter(Year >= 2022) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Unemployment Rate", "Country"), .direction = "down")
   
   # Store the processed data frame in the list
   unemp_rate_data_list[[code]] <- complete_months
@@ -778,13 +879,22 @@ for (code in names(kr)) {
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Unemployment Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Unemployment Rate", "Country"), .direction = "down")
   
   # Store the processed data frame in the list
-  unemp_rate_data_list[[code]] <- curr_data
+  unemp_rate_data_list[[code]] <- complete_months
 }
 
 for (code in names(uk)) {
@@ -800,21 +910,31 @@ for (code in names(uk)) {
   curr_data <- curr_data %>%
     separate(Date, into = c("Year", "Month"), sep = " ") %>%
     filter(Year >= 2022) %>%
-    mutate(Month = str_to_title(Month), Month = match(Month, month.abb))
+    mutate(Month = str_to_title(Month), Month = match(Month, month.abb), Year = as.integer(Year))
 
   # Rename the columns
   colnames(curr_data) <- c("Year", "Month", "Unemployment Rate")
-
-  curr_data <- curr_data %>%
+  
+  full_years = as.integer(2022:2024)
+  # Ensure Year and Month are treated as character values
+  complete_months <- expand.grid(
+    Year = full_years,
+    Month = as.integer(1:12)
+  ) %>%
+    filter(!(Year == 2024 & Month > 9)) %>%  # Filter out months after October 2024
+    left_join(curr_data, by = c("Year", "Month")) %>%
+    arrange(Year, Month) %>%
     mutate(Country = code) %>%  # Add the country code column
-    relocate(Country, .before = Year)
+    relocate(Country, .before = Year) %>%
+    fill(c("Unemployment Rate", "Country"), .direction = "down")
   
   # Store the processed data frame in the list
-  unemp_rate_data_list[[code]] <- curr_data
+  unemp_rate_data_list[[code]] <- complete_months
 }
 
 # Combine all the data frames into one
-unemp_rate <- do.call(rbind, unemp_rate_data_list)
+unemp_rate <- do.call(rbind, unemp_rate_data_list) %>%
+  select(Country, Year, Month, "Unemployment Rate")
 
 View(unemp_rate)
 

@@ -3,7 +3,7 @@ import glob
 import os
 
 # Directory containing the country folders
-base_directory = 'C:\\Users\\paulr\\Downloads'
+base_directory = '/home/shadybea/Downloads/New Folder'
 # List to hold dataframes for final concatenation
 all_dataframes = []
 
@@ -36,7 +36,7 @@ for country in country_folders:
             continue
 
         # Calculate year and month based on the starting point
-        total_months = index + (start_month - 1) + (start_year - 2010) * 12
+        total_months = index + (start_month - 1) + (start_year - 2022) * 12
         year = total_months // 12
         month = total_months % 12 + 1  # Month as 1-12
         # Add new columns

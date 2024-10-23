@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 # Path to the folder containing the Excel files
-folder_path = 'C:\\Users\\beatr\\Downloads\\New folder (3)'
+folder_path = '\\home\\shadybea\\Downloads\\New Folder(2)'
 output_folder = folder_path
 all_sales_powertrain_data = []
 
