@@ -1,0 +1,5 @@
+IEA (2024), Global EV Outlook 2024, IEA, Paris https://www.iea.org/reports/global-ev-outlook-2023, Licence: CC BY 4.0
+
+World Bank. (2025). Global Economic Monitor (GEM). Data retrieved from World Bank DataBank: https://databank.worldbank.org/source/global-economic-monitor-(gem)
+
+Statista. (n.d.). Average annual West Texas Intermediate (WTI) crude oil price from 1976 to 2024 (in U.S. dollars per barrel). Retrieved January 14, 2025, from https://www.statista.com/statistics/266659/west-texas-intermediate-oil-prices/
