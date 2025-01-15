@@ -1,6 +1,20 @@
+# Libraries
+
 library(openxlsx)
-library(tidyr)
+library(tidyverse)
+library(fpp3)
+library(urca)
 
-data <- read.csv("data/dataset.csv")
+# Import the data 
+df <- read.csv("data/dataset.csv")
 
-View(data)
+# Convert to tsibble
+ts <- as_tsibble(df, key=Country, index=Year)
+rm(df) # Clean up
+View(ts)
+
+# Autoplot each variable (excluding the index)
+for (col in names(ts)[-1]) {  # Exclude the first column (index)
+  print(autoplot(ts, !!sym(col)) + ggtitle(paste("Autoplot of", col)))
+}
+
