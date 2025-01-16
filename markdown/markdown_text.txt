@@ -1,0 +1,19 @@
+### GLOSSARY
+
+EV - (Electric Vehicle)
+
+### RESEARCH QUESTION
+
+This paper aims to explain EV sales data through a two part model, that consists of a set of global variables, and another of country level variables.
+
+### METHODOLOGY
+
+We consider a fixed effects model, and attempt to reduce the FE to as close to zero as possible; implying that all of the available information on sales is captured by the global variables.
+
+# Feature selection
+
+Features were selected for modeling based on one of two criteria. First those that garnered academic support in the forecast/explanation of EV sales, or price phenomena were admitted into the initial model, as a baseline. 
+
+Then secondly, combinations of select variables were subject to grid search under the condition of minimizing FE.
+
+
