@@ -11,13 +11,10 @@ Statista. (n.d.). Average annual West Texas Intermediate (WTI) crude oil price f
 
 ## Justification for variable choice
 
-# CPI
-Yeh, Jen-Yin & Wang, Yu-Ting. (2023). A Prediction Model for Electric Vehicle Sales Using Machine Learning Approaches. Journal of Global Information Management. 31. 1-21. 10.4018/JGIM.327277. 
 
-# GDP
-Sotnyk, Iryna & Hulak, Daniil & Yakushev, Oleksandr & Yakusheva, Oksana & Prokopenko, Olha & Yevdokymov, Andrii. (2020). Development of the US electric car market: macroeconomic determinants and forecasts. Polityka Energetyczna – Energy Policy Journal. 23. 147-164. 10.33223/epj/127921. 
-
-# Determinants of Sales in Europe
+# Justificaiton for several variables
 Kovárník, R. & Staňková, M. Determinants of Electric Car Sales in Europe. LOGI – Scientific Journal on Transport and Logistics, 2021, Sciendo, vol. 12 no. 1, pp. 214-225. https://doi.org/10.2478/logi-2021-0020
 
+# Justification for several variables
+Yeh, Jen-Yin & Wang, Yu-Ting. (2023). A Prediction Model for Electric Vehicle Sales Using Machine Learning Approaches. Journal of Global Information Management. 31. 1-21. 10.4018/JGIM.327277. 
 
