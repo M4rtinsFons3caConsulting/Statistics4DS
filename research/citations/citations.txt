@@ -1,5 +1,23 @@
+# Citations for data 
+
+# Sales Info
 IEA (2024), Global EV Outlook 2024, IEA, Paris https://www.iea.org/reports/global-ev-outlook-2023, Licence: CC BY 4.0
 
+# World Bank data
 World Bank. (2025). Global Economic Monitor (GEM). Data retrieved from World Bank DataBank: https://databank.worldbank.org/source/global-economic-monitor-(gem)
 
+# WTI oil price data
 Statista. (n.d.). Average annual West Texas Intermediate (WTI) crude oil price from 1976 to 2024 (in U.S. dollars per barrel). Retrieved January 14, 2025, from https://www.statista.com/statistics/266659/west-texas-intermediate-oil-prices/
+
+## Justification for variable choice
+
+# CPI
+Yeh, Jen-Yin & Wang, Yu-Ting. (2023). A Prediction Model for Electric Vehicle Sales Using Machine Learning Approaches. Journal of Global Information Management. 31. 1-21. 10.4018/JGIM.327277. 
+
+# GDP
+Sotnyk, Iryna & Hulak, Daniil & Yakushev, Oleksandr & Yakusheva, Oksana & Prokopenko, Olha & Yevdokymov, Andrii. (2020). Development of the US electric car market: macroeconomic determinants and forecasts. Polityka Energetyczna – Energy Policy Journal. 23. 147-164. 10.33223/epj/127921. 
+
+# Determinants of Sales in Europe
+Kovárník, R. & Staňková, M. Determinants of Electric Car Sales in Europe. LOGI – Scientific Journal on Transport and Logistics, 2021, Sciendo, vol. 12 no. 1, pp. 214-225. https://doi.org/10.2478/logi-2021-0020
+
+

@@ -1,0 +1,16 @@
+library(tsibble)
+library(plm)
+
+pdata <- pdata.frame(as.data.frame(data_tsibble), index = c("Country", "Year"))
+
+# Fit a Pooling Model (Null Hypothesis: No Panel Effects)
+pooling_model <- plm(EVSales ~ TK*, data = pdata, model = "pooling")  # *replace with actual variable names
+
+# Perform the Lagrange Multiplier Test
+lm_test <- plmtest(pooling_model, effect = "individual", type = "bp")
+print(lm_test)
+
+# Interpret the Results
+# If the p-value is small (e.g., p<0.05p<0.05): Reject the null hypothesis, indicating significant panel effects (random effects are present).
+# If the p-value is large (e.g., p>0.05p>0.05): Fail to reject the null hypothesis, indicating no panel effects (data can be pooled).
+
