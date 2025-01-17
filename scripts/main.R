@@ -12,7 +12,7 @@ library(fpp3)
 
 ############################### INGESTION ######################################
 # Import the data 
-df <- read.csv("data/dataset.csv")
+df <- read.csv("../data/dataset.csv")
 # View(df)
 
 # Convert to tsibble
@@ -82,14 +82,14 @@ vars <- colnames(numeric_df)
 corr_matrix <- cor(df[, vars], use = "pairwise.complete.obs")
 
 # Generate the correlation plot
-corrplot(cor_matrix, method = "circle", type = "upper", 
+corrplot(corr_matrix, method = "circle", type = "upper", 
          tl.col = "black", tl.srt = 90, diag = FALSE)
 
 # The variables evstock, evchargpoint, industprod, totreserves, millieagekm were
 # dropped at this stage as they exhibit exceedingly large linear correlation 
 # (abs(value) < .8) with other variables.
 
-to_drop <- c('evstock', 'evchargpnt', 'industprod', 'totreserves', 'milleagekm')
+to_drop <- c('evstock', 'evchargpnt', 'industprod', 'totreserves', 'milleagekm', 'forexrate')
 df <- df %>% select(-to_drop)
 ############################ STATISTICAL TESTS ################################
 
@@ -128,7 +128,7 @@ for (country in unique(df$country)) {
   country_data <- df[df$country == country, ]
   
   # Generate the output file path dynamically for each country
-  output_file <- paste0('figures/adf_test_results_', country, '.txt')
+  output_file <- paste0('../figures/adf_test_results_', country, '.txt')
   
   # Call the perform_adf_test function for the country's data
   perform_adf_test(country_data, output_file = output_file)
@@ -154,23 +154,77 @@ df_novelty <- df
 
 # Pooled OLS
 
-pooled_df <- df_canonical %>% select(-c('year','country'))
-model <- lm(pooled_df$evsales ~ ., data = pooled_df)
-
+pooled_df <- df_novelty %>% select(-c('year','country'))
+model <- plm(pooled_df$evsales ~ cpi + newcaravgprice + gdp + co2emit + lifexpect + renergycon + pm25exp, data = pooled_df, model = 'pooling')
+model
 # Perform the Breusch-Pagan test
 bptest(model)
 
+###### df_canonical
 # studentized Breusch-Pagan test
 # data:  model
-# BP = 38.678, df = 6, p-value = 8.275e-07
+# BP = NaN, df = 95, p-value = NA
 
 # Concluding that to model the data using Pooled OLS, heteroscedasticity must be
 # corrected.
 
+###### df_novelty
+# studentized Breusch-Pagan test
+# 
+# data:  model
+# BP = 7.1219, df = 7, p-value = 0.4163
+
 # Fixed effects model
 
 # Fit a fixed effects model (including country and year fixed effects)
-model <- lm(df_canonical$evsales ~ . + factor(df_canonical$country) + factor(df_canonical$year), data = df_canonical)
+fixed_df <- df_novelty %>% select(-c('year','country'))
+model <- plm(fixed_df$evsales ~ cpi + newcaravgprice + gdp + co2emit + lifexpect + renergycon + pm25exp, data = df_novelty, model='within')
+model
+# Perform the Breusch-Pagan test
+bptest(model)
+
+###### df_canonical = df_novelty
+# studentized Breusch-Pagan test
+# 
+# data:  model
+# BP = 35.363, df = 7, p-value = 9.559e-06
+
+# Random effects model
+
+# Convert the data to a panel data frame
+panel_data <- pdata.frame(df_novelty, index = c("country", "year"))
+  
+# Fit a random effects model
+random_df <- panel_data %>% select(-c('year','country'))
+model <- plm(evsales ~ cpi + newcaravgprice + gdp + co2emit + lifexpect + renergycon + pm25exp, data = random_df, model = "random")
+model
+# Perform the White test
+bptest(model)
+
+###### df_canonical = df_novelty
+# studentized Breusch-Pagan test
+# 
+# data:  model
+# BP = 35.363, df = 7, p-value = 9.559e-06
+
+# Concluding that to model the data using a Random Effects model, heteroscedasticity
+# must be corrected.
+
+##################### CORRECTING NON-STATIONARITY #############################
+
+columns_to_log <- c('evsales', 'cpi', 'newcaravgprice', 'gdp', 'co2emit', 'lifexpect', 'renergycon', 'pm25exp')
+log_df <- df
+log_df[columns_to_log] <- log(df[columns_to_log] + 1)
+
+df_log_canonical <- log_df %>% select(c('evsales', 'year','country', 'cpi', 'newcaravgprice','gdp', 'co2emit', 'lifexpect', 'renergycon','pm25exp'))
+df_log_novelty <- log_df
+
+###################### BASELINE
+
+# Pooled OLS
+
+pooled_log_df <- df_log_canonical %>% select(-c('year','country'))
+model <- plm(pooled_log_df$evsales ~ cpi + newcaravgprice + gdp + co2emit + lifexpect + renergycon + pm25exp, data = df_log_canonical, model = 'pooling')
 model
 # Perform the Breusch-Pagan test
 bptest(model)
@@ -178,21 +232,59 @@ bptest(model)
 # studentized Breusch-Pagan test
 # 
 # data:  model
-# BP = 65.578, df = 24, p-value = 1.001e-05
+# BP = 7.4924, df = 7, p-value = 0.3795
+
+# Based on this p-value, we fail to reject the null hypothesis and can conclude
+# the model does not suffer from heteroskedacity.
+
+
+# Fixed effects model
+
+# Fit a fixed effects model (including country and year fixed effects)
+fixed_log_df <- df_log_canonical %>% select(-c('year','country'))
+model <- plm(evsales ~ cpi + newcaravgprice + gdp + co2emit + lifexpect + renergycon + pm25exp, data = df_log_novelty, model='within')
+model
+# Perform the Breusch-Pagan test
+bptest(model)
+
+# studentized Breusch-Pagan test
+# 
+# data:  model
+# BP = 25.214, df = 7, p-value = 0.0006953
+
 
 # Random effects model
 
 # Convert the data to a panel data frame
-panel_data <- pdata.frame(df_canonical, index = c("country", "year"))
-panel_data <- panel_data %>% select(-'evsales')
-  
-# Fit a random effects model
-model <- plm(df_canonical$evsales ~ ., data = panel_data, model = "between")
+panel_data <- pdata.frame(df_log_novelty, index = c("country", "year"))
 
+# Fit a random effects model
+random_df <- panel_data %>% select(-c('year','country'))
+model <- plm(evsales ~ cpi + newcaravgprice + gdp + co2emit + lifexpect + renergycon + pm25exp, data = panel_data, model = "random")
+model
 # Perform the White test
 bptest(model)
 
-
-model
-
-##################### CORRECTING NON-STATIONARITY #############################
+# studentized Breusch-Pagan test
+# 
+# data:  model
+# BP = 25.214, df = 7, p-value = 0.0006953
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

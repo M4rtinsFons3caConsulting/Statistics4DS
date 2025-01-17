@@ -112,43 +112,6 @@ phi2  8.21  5.68  4.67
 phi3 10.61  7.24  5.91
 
 
-ADF Test for forexrate :
-
-############################################### 
-# Augmented Dickey-Fuller Test Unit Root Test # 
-############################################### 
-
-Test regression trend 
-
-
-Call:
-lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
-
-Residuals:
-   Min     1Q Median     3Q    Max 
-     0      0      0      0      0 
-
-Coefficients: (2 not defined because of singularities)
-            Estimate Std. Error t value Pr(>|t|)
-(Intercept)        0          0     NaN      NaN
-z.lag.1           NA         NA      NA       NA
-tt                 0          0     NaN      NaN
-z.diff.lag        NA         NA      NA       NA
-
-Residual standard error: 0 on 8 degrees of freedom
-Multiple R-squared:    NaN,	Adjusted R-squared:    NaN 
-F-statistic:   NaN on 1 and 8 DF,  p-value: NA
-
-
-Value of test-statistic is: NaN NaN NaN 
-
-Critical values for test statistics: 
-      1pct  5pct 10pct
-tau3 -4.38 -3.60 -3.24
-phi2  8.21  5.68  4.67
-phi3 10.61  7.24  5.91
-
-
 ADF Test for cpi :
 
 ############################################### 
