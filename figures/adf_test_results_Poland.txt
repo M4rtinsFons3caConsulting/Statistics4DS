@@ -52,21 +52,23 @@ lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--204791  -31232   21804   62246  177911 
+-1597.4  -722.4  -285.8   562.9  2334.2 
 
 Coefficients:
-                Estimate   Std. Error t value Pr(>|t|)
-(Intercept) -89075.74001 117287.96970  -0.759    0.472
-z.lag.1          0.09509      0.53149   0.179    0.863
-tt           22918.62911  28869.33737   0.794    0.453
-z.diff.lag       0.24103      0.68591   0.351    0.736
+              Estimate Std. Error t value Pr(>|t|)   
+(Intercept) -1726.2148  1208.6207  -1.428  0.19628   
+z.lag.1        -0.4344     0.1574  -2.760  0.02808 * 
+tt            473.3431   215.9049   2.192  0.06445 . 
+z.diff.lag      1.5593     0.4144   3.763  0.00705 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 130800 on 7 degrees of freedom
-Multiple R-squared:  0.5667,	Adjusted R-squared:  0.381 
-F-statistic: 3.052 on 3 and 7 DF,  p-value: 0.1014
+Residual standard error: 1257 on 7 degrees of freedom
+Multiple R-squared:  0.9194,	Adjusted R-squared:  0.8848 
+F-statistic: 26.61 on 3 and 7 DF,  p-value: 0.0003353
 
 
-Value of test-statistic is: 0.1789 1.5555 1.5957 
+Value of test-statistic is: -2.7604 5.0846 6.0842 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -88,24 +90,24 @@ Call:
 lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
-   Min     1Q Median     3Q    Max 
--1.549 -1.054 -0.622  1.198  2.272 
+    Min      1Q  Median      3Q     Max 
+-2.4027 -1.4466 -0.3938  0.6898  5.2853 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)  
-(Intercept)   0.7326     1.5556   0.471   0.6520  
-z.lag.1      -1.2799     0.4488  -2.852   0.0246 *
-tt            0.3167     0.2128   1.488   0.1804  
-z.diff.lag    0.8196     0.6050   1.355   0.2176  
+(Intercept)  -5.6310     2.6535  -2.122   0.0715 .
+z.lag.1      -0.1317     0.4502  -0.293   0.7784  
+tt            1.0626     0.3674   2.892   0.0233 *
+z.diff.lag   -0.7784     0.6927  -1.124   0.2982  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.621 on 7 degrees of freedom
-Multiple R-squared:  0.5702,	Adjusted R-squared:  0.386 
-F-statistic: 3.096 on 3 and 7 DF,  p-value: 0.09872
+Residual standard error: 2.639 on 7 degrees of freedom
+Multiple R-squared:  0.5589,	Adjusted R-squared:  0.3698 
+F-statistic: 2.956 on 3 and 7 DF,  p-value: 0.1074
 
 
-Value of test-statistic is: -2.852 3.0965 4.5181 
+Value of test-statistic is: -0.2925 3.2018 4.3357 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -128,21 +130,21 @@ lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--2.4315 -1.1991 -0.2972  1.1009  3.8367 
+-2.2634 -1.7312 -1.4805  0.5975  7.1034 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
-(Intercept)  37.0042    70.1283   0.528    0.614
-z.lag.1      -0.3817     0.7029  -0.543    0.604
-tt            1.1451     1.1882   0.964    0.367
-z.diff.lag    0.7664     1.0826   0.708    0.502
+(Intercept) -54.1174    57.3017  -0.944    0.376
+z.lag.1       0.4746     0.5493   0.864    0.416
+tt            0.5620     0.6897   0.815    0.442
+z.diff.lag   -0.1290     0.8593  -0.150    0.885
 
-Residual standard error: 2.184 on 7 degrees of freedom
-Multiple R-squared:  0.5848,	Adjusted R-squared:  0.4069 
-F-statistic: 3.287 on 3 and 7 DF,  p-value: 0.08821
+Residual standard error: 3.359 on 7 degrees of freedom
+Multiple R-squared:  0.8183,	Adjusted R-squared:  0.7405 
+F-statistic: 10.51 on 3 and 7 DF,  p-value: 0.005512
 
 
-Value of test-statistic is: -0.543 1.9205 1.8825 
+Value of test-statistic is: 0.8641 2.6496 3.5234 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -164,24 +166,24 @@ Call:
 lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--563394  -36829    3760   69758  347790 
+     Min       1Q   Median       3Q      Max 
+-17913.4  -6156.2    846.7   8505.3  15818.8 
 
 Coefficients:
-                 Estimate    Std. Error t value Pr(>|t|)  
-(Intercept) 23638505.6162  9919941.8341   2.383   0.0487 *
-z.lag.1           -1.5937        0.6815  -2.338   0.0520 .
-tt            640243.7808   264422.0974   2.421   0.0460 *
-z.diff.lag         0.3437        0.4336   0.793   0.4539  
+               Estimate  Std. Error t value Pr(>|t|)   
+(Intercept) 627864.1995 169280.2002   3.709  0.00756 **
+z.lag.1         -1.3282      0.3688  -3.601  0.00872 **
+tt           32057.4310   8644.4548   3.708  0.00757 **
+z.diff.lag       0.2918      0.2972   0.982  0.35901   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 265100 on 7 degrees of freedom
-Multiple R-squared:  0.5851,	Adjusted R-squared:  0.4072 
-F-statistic:  3.29 on 3 and 7 DF,  p-value: 0.08804
+Residual standard error: 12670 on 7 degrees of freedom
+Multiple R-squared:  0.6761,	Adjusted R-squared:  0.5372 
+F-statistic:  4.87 on 3 and 7 DF,  p-value: 0.03893
 
 
-Value of test-statistic is: -2.3384 9.7311 3.2068 
+Value of test-statistic is: -3.6014 10.2634 6.9558 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -203,24 +205,24 @@ Call:
 lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--1.1384 -0.7375 -0.3116  0.0205  3.4487 
+     Min       1Q   Median       3Q      Max 
+-0.75363 -0.45784 -0.01643  0.32938  0.93574 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)  
-(Intercept)   6.2266     3.4288   1.816   0.1122  
-z.lag.1      -0.9308     0.4164  -2.235   0.0605 .
-tt           -0.1995     0.1914  -1.042   0.3320  
-z.diff.lag    0.1970     0.3408   0.578   0.5814  
+(Intercept)   6.1463     3.2494   1.891   0.1005  
+z.lag.1      -0.4670     0.2122  -2.201   0.0637 .
+tt           -0.3386     0.1993  -1.698   0.1332  
+z.diff.lag    0.7158     0.2485   2.880   0.0236 *
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.57 on 7 degrees of freedom
-Multiple R-squared:  0.4542,	Adjusted R-squared:  0.2202 
-F-statistic: 1.941 on 3 and 7 DF,  p-value: 0.2115
+Residual standard error: 0.6999 on 7 degrees of freedom
+Multiple R-squared:  0.6045,	Adjusted R-squared:  0.435 
+F-statistic: 3.567 on 3 and 7 DF,  p-value: 0.07526
 
 
-Value of test-statistic is: -2.2353 2.0895 2.5926 
+Value of test-statistic is: -2.2008 2.7988 3.0501 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -243,23 +245,21 @@ lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--1184.1   -99.9   122.9   322.2   562.9 
+-75.481 -16.805   2.842  25.290  37.125 
 
 Coefficients:
-             Estimate Std. Error t value Pr(>|t|)  
-(Intercept) 18068.269   9947.624   1.816   0.1122  
-z.lag.1        -3.273      1.844  -1.775   0.1191  
-tt           -274.736    115.134  -2.386   0.0484 *
-z.diff.lag      1.063      1.288   0.825   0.4367  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  809.893    441.370   1.835    0.109
+z.lag.1       -2.469      1.397  -1.767    0.121
+tt            -5.764      3.772  -1.528    0.170
+z.diff.lag     1.677      1.085   1.545    0.166
 
-Residual standard error: 584.6 on 7 degrees of freedom
-Multiple R-squared:  0.5003,	Adjusted R-squared:  0.2862 
-F-statistic: 2.336 on 3 and 7 DF,  p-value: 0.1601
+Residual standard error: 38.8 on 7 degrees of freedom
+Multiple R-squared:  0.4607,	Adjusted R-squared:  0.2296 
+F-statistic: 1.993 on 3 and 7 DF,  p-value: 0.2037
 
 
-Value of test-statistic is: -1.7754 2.7073 3.0476 
+Value of test-statistic is: -1.767 2.3309 2.9461 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -281,24 +281,24 @@ Call:
 lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--1.0470 -0.1837  0.1183  0.2498  0.5974 
+     Min       1Q   Median       3Q      Max 
+-1.06285 -0.39782  0.08106  0.42117  0.75119 
 
 Coefficients:
-             Estimate Std. Error t value Pr(>|t|)   
-(Intercept) 111.93168   27.74718   4.034  0.00497 **
-z.lag.1      -1.41422    0.34876  -4.055  0.00484 **
-tt           -0.16129    0.08243  -1.957  0.09128 . 
-z.diff.lag    1.22893    0.29232   4.204  0.00402 **
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept) 97.56088   29.54358   3.302   0.0131 *
+z.lag.1     -1.26368    0.38120  -3.315   0.0129 *
+tt           0.02615    0.06929   0.377   0.7171  
+z.diff.lag   1.02003    0.32259   3.162   0.0159 *
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 0.5355 on 7 degrees of freedom
-Multiple R-squared:  0.7808,	Adjusted R-squared:  0.6869 
-F-statistic: 8.313 on 3 and 7 DF,  p-value: 0.01045
+Residual standard error: 0.7025 on 7 degrees of freedom
+Multiple R-squared:  0.6783,	Adjusted R-squared:  0.5405 
+F-statistic: 4.921 on 3 and 7 DF,  p-value: 0.03803
 
 
-Value of test-statistic is: -4.055 6.9462 10.1263 
+Value of test-statistic is: -3.315 4.5295 6.2574 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -321,21 +321,21 @@ lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--1.1562 -0.3735  0.2289  0.4396  0.7073 
+-1.1921 -0.7240 -0.3933  0.6040  1.6518 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
-(Intercept)   0.2329     3.4414   0.068    0.948
-z.lag.1      -0.1142     0.3471  -0.329    0.752
-tt            0.1443     0.1240   1.164    0.283
-z.diff.lag    0.5000     0.6554   0.763    0.470
+(Intercept)  18.2237    12.3937   1.470    0.185
+z.lag.1      -0.6773     0.4593  -1.475    0.184
+tt           -0.6916     0.3849  -1.797    0.115
+z.diff.lag    0.2740     0.3817   0.718    0.496
 
-Residual standard error: 0.6909 on 7 degrees of freedom
-Multiple R-squared:  0.6642,	Adjusted R-squared:  0.5202 
-F-statistic: 4.615 on 3 and 7 DF,  p-value: 0.04389
+Residual standard error: 1.189 on 7 degrees of freedom
+Multiple R-squared:  0.3604,	Adjusted R-squared:  0.0863 
+F-statistic: 1.315 on 3 and 7 DF,  p-value: 0.3433
 
 
-Value of test-statistic is: -0.329 1.383 1.5654 
+Value of test-statistic is: -1.4748 2.9391 1.9496 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
@@ -357,24 +357,22 @@ Call:
 lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--0.5081 -0.2858 -0.1537  0.3143  0.8500 
+   Min     1Q Median     3Q    Max 
+-2.681 -1.298  0.331  1.381  2.732 
 
 Coefficients:
-            Estimate Std. Error t value Pr(>|t|)   
-(Intercept)  16.3483     6.1746   2.648   0.0331 * 
-z.lag.1      -2.0253     0.7954  -2.546   0.0383 * 
-tt            0.3808     0.2088   1.823   0.1110   
-z.diff.lag    2.7767     0.7494   3.705   0.0076 **
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)   3.9776     6.6566   0.598    0.569
+z.lag.1      -0.6066     0.7511  -0.808    0.446
+tt            0.7326     0.5243   1.397    0.205
+z.diff.lag    0.4849     0.6191   0.783    0.459
 
-Residual standard error: 0.5141 on 7 degrees of freedom
-Multiple R-squared:  0.863,	Adjusted R-squared:  0.8043 
-F-statistic:  14.7 on 3 and 7 DF,  p-value: 0.002093
+Residual standard error: 2.093 on 7 degrees of freedom
+Multiple R-squared:  0.3673,	Adjusted R-squared:  0.09618 
+F-statistic: 1.355 on 3 and 7 DF,  p-value: 0.3323
 
 
-Value of test-statistic is: -2.5464 5.2827 6.2992 
+Value of test-statistic is: -0.8076 1.7652 1.6742 
 
 Critical values for test statistics: 
       1pct  5pct 10pct
