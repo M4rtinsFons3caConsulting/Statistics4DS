@@ -1,0 +1,567 @@
+
+ADF Test for year :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+     0      0      0      0      0 
+
+Coefficients: (2 not defined because of singularities)
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)        1          0     Inf   <2e-16 ***
+z.lag.1            0          0     NaN      NaN    
+tt                NA         NA      NA       NA    
+z.diff.lag        NA         NA      NA       NA    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0 on 8 degrees of freedom
+Multiple R-squared:    NaN,	Adjusted R-squared:    NaN 
+F-statistic:   NaN on 1 and 8 DF,  p-value: NA
+
+
+Value of test-statistic is: NaN NaN NaN 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for evsales :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-33213 -19476   -960   6645  65584 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+(Intercept) -4.595e+04  3.283e+04  -1.400   0.2112  
+z.lag.1     -8.823e-01  4.394e-01  -2.008   0.0914 .
+tt           1.577e+04  6.556e+03   2.406   0.0529 .
+z.diff.lag   1.526e+00  7.889e-01   1.934   0.1013  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 34700 on 6 degrees of freedom
+Multiple R-squared:  0.6607,	Adjusted R-squared:  0.4911 
+F-statistic: 3.895 on 3 and 6 DF,  p-value: 0.07369
+
+
+Value of test-statistic is: -2.0081 2.8434 3.3347 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for cpiyoy :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.54494 -0.31501 -0.07249  0.30265  1.67455 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  -0.4476     1.1722  -0.382    0.716
+z.lag.1      -0.6583     0.6085  -1.082    0.321
+tt            0.2230     0.1331   1.676    0.145
+z.diff.lag    0.8380     0.5955   1.407    0.209
+
+Residual standard error: 1.085 on 6 degrees of freedom
+Multiple R-squared:  0.5834,	Adjusted R-squared:  0.3751 
+F-statistic: 2.801 on 3 and 6 DF,  p-value: 0.1309
+
+
+Value of test-statistic is: -1.0818 1.8842 2.2476 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for forexrate :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.06218 -0.04050  0.00607  0.03073  0.08017 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  0.78046    0.37588   2.076   0.0832 .
+z.lag.1     -1.03167    0.50783  -2.032   0.0885 .
+tt           0.01595    0.01054   1.513   0.1809  
+z.diff.lag   0.30349    0.45867   0.662   0.5328  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.05766 on 6 degrees of freedom
+Multiple R-squared:  0.4427,	Adjusted R-squared:  0.164 
+F-statistic: 1.588 on 3 and 6 DF,  p-value: 0.2877
+
+
+Value of test-statistic is: -2.0315 1.784 2.0654 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for cpi :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.9608 -0.4018  0.1509  0.5024  2.2197 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) -23.7732    79.4017  -0.299    0.775
+z.lag.1       0.2164     0.7751   0.279    0.790
+tt            0.1491     0.6997   0.213    0.838
+z.diff.lag    0.6775     0.7990   0.848    0.429
+
+Residual standard error: 1.409 on 6 degrees of freedom
+Multiple R-squared:  0.5475,	Adjusted R-squared:  0.3213 
+F-statistic:  2.42 on 3 and 6 DF,  p-value: 0.1644
+
+
+Value of test-statistic is: 0.2791 1.6607 2.382 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for gdp :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-114305  -18661  -15267   17142  124017 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  4.963e+06  1.675e+06   2.964   0.0252 *
+z.lag.1     -1.777e+00  6.021e-01  -2.952   0.0256 *
+tt           4.459e+04  1.634e+04   2.729   0.0342 *
+z.diff.lag   4.598e-01  3.841e-01   1.197   0.2763  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 75560 on 6 degrees of freedom
+Multiple R-squared:  0.6686,	Adjusted R-squared:  0.5029 
+F-statistic: 4.034 on 3 and 6 DF,  p-value: 0.06897
+
+
+Value of test-statistic is: -2.9517 3.9606 4.4247 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for unemprate :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.15381 -0.10152 -0.04260  0.08654  0.23798 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  6.12622    1.80678   3.391  0.01466 * 
+z.lag.1     -0.53630    0.16108  -3.329  0.01582 * 
+tt          -0.23317    0.06191  -3.766  0.00933 **
+z.diff.lag  -0.05715    0.24271  -0.235  0.82169   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1789 on 6 degrees of freedom
+Multiple R-squared:  0.8426,	Adjusted R-squared:  0.7638 
+F-statistic:  10.7 on 3 and 6 DF,  p-value: 0.008015
+
+
+Value of test-statistic is: -3.3294 7.3673 7.0945 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for oilprice :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-26.028 -14.070   1.094  14.034  20.811 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  52.1749    61.6136   0.847    0.430
+z.lag.1      -0.7004     0.5648  -1.240    0.261
+tt           -0.7141     4.0227  -0.178    0.865
+z.diff.lag    0.5299     0.5095   1.040    0.338
+
+Residual standard error: 20.66 on 6 degrees of freedom
+Multiple R-squared:  0.3963,	Adjusted R-squared:  0.09443 
+F-statistic: 1.313 on 3 and 6 DF,  p-value: 0.3541
+
+
+Value of test-statistic is: -1.2401 1.176 1.7585 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for evavgprice :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+ -6342  -4457  -2288   4678   9616 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -7.491e+03  2.763e+04  -0.271    0.795
+z.lag.1     -2.198e-02  5.355e-01  -0.041    0.969
+tt           1.551e+03  8.441e+02   1.837    0.116
+z.diff.lag  -3.967e-01  5.151e-01  -0.770    0.470
+
+Residual standard error: 7090 on 6 degrees of freedom
+Multiple R-squared:  0.3942,	Adjusted R-squared:  0.09124 
+F-statistic: 1.301 on 3 and 6 DF,  p-value: 0.3574
+
+
+Value of test-statistic is: -0.041 1.3784 1.8399 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for lithbatpriceusd :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-106.722   -5.697    7.544   16.766   52.513 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -1.904e+02  2.598e+02  -0.733    0.491
+z.lag.1      7.608e-03  2.646e-01   0.029    0.978
+tt           1.735e+01  2.344e+01   0.740    0.487
+z.diff.lag  -2.004e-01  4.041e-01  -0.496    0.638
+
+Residual standard error: 54.45 on 6 degrees of freedom
+Multiple R-squared:  0.4687,	Adjusted R-squared:  0.203 
+F-statistic: 1.764 on 3 and 6 DF,  p-value: 0.2536
+
+
+Value of test-statistic is: 0.0287 1.767 1.8587 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for newcaravgprice :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1283.2 -1112.7  -577.7   748.5  2719.7 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) 41350.8814 22869.8465   1.808    0.121
+z.lag.1        -1.1596     0.6249  -1.856    0.113
+tt            624.6835   327.8967   1.905    0.105
+z.diff.lag      1.6960     1.1789   1.439    0.200
+
+Residual standard error: 1735 on 6 degrees of freedom
+Multiple R-squared:  0.4706,	Adjusted R-squared:  0.206 
+F-statistic: 1.778 on 3 and 6 DF,  p-value: 0.2511
+
+
+Value of test-statistic is: -1.8556 2.2994 2.5102 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for pm25exp :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.0887 -0.6751  0.2521  0.4374  0.8493 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) -10.6306     9.2344  -1.151    0.293
+z.lag.1       0.6551     0.6879   0.952    0.378
+tt            0.5057     0.2691   1.879    0.109
+z.diff.lag   -0.7985     0.5791  -1.379    0.217
+
+Residual standard error: 0.8674 on 6 degrees of freedom
+Multiple R-squared:  0.5304,	Adjusted R-squared:  0.2956 
+F-statistic: 2.259 on 3 and 6 DF,  p-value: 0.1819
+
+
+Value of test-statistic is: 0.9523 2.2217 3.3186 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for co2emit :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-24.257  -8.594   4.026   8.571  14.630 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+(Intercept) 646.5845   251.8676   2.567   0.0425 *
+z.lag.1      -1.7778     0.6717  -2.647   0.0382 *
+tt           -9.1788     4.5133  -2.034   0.0882 .
+z.diff.lag    0.5279     0.4496   1.174   0.2848  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 14.9 on 6 degrees of freedom
+Multiple R-squared:  0.6565,	Adjusted R-squared:  0.4847 
+F-statistic: 3.822 on 3 and 6 DF,  p-value: 0.07634
+
+
+Value of test-statistic is: -2.6468 3.4125 4.1665 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for renergycon :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.6802 -0.5845  0.4770  0.7720  2.4462 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  20.9466    26.4971   0.791    0.459
+z.lag.1      -1.7891     2.4114  -0.742    0.486
+tt            0.5744     1.2252   0.469    0.656
+z.diff.lag    1.5624     1.4043   1.113    0.308
+
+Residual standard error: 2.117 on 6 degrees of freedom
+Multiple R-squared:  0.4024,	Adjusted R-squared:  0.1036 
+F-statistic: 1.347 on 3 and 6 DF,  p-value: 0.345
+
+
+Value of test-statistic is: -0.7419 1.1433 1.0749 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ADF Test for lifexpect :
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt + z.diff.lag)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.32327 -0.18922 -0.00371  0.15666  0.34063 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept) 56.98549   38.53574   1.479    0.190
+z.lag.1     -0.68874    0.46902  -1.468    0.192
+tt          -0.02738    0.03641  -0.752    0.480
+z.diff.lag  -0.13685    0.37537  -0.365    0.728
+
+Residual standard error: 0.2739 on 6 degrees of freedom
+Multiple R-squared:  0.5568,	Adjusted R-squared:  0.3352 
+F-statistic: 2.513 on 3 and 6 DF,  p-value: 0.1553
+
+
+Value of test-statistic is: -1.4685 1.8444 2.6879 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+

@@ -1,29 +1,8 @@
 ---
 
 ### **General Tests:**
-1. **Multicollinearity Test** (e.g., Variance Inflation Factor).  
-2. **Model Specification Test** (e.g., Ramsey RESET).  
-3. **Stationarity Tests** (e.g., Augmented Dickey-Fuller, Phillips-Perron).  
-4. **Outlier and Influential Observation Tests** (e.g., Cook's Distance, Leverage).  
-
----
-
-### **Model-Specific Tests:**
-
-#### **Pooled OLS:**
-1. **Heteroskedasticity Tests** (e.g., Breusch-Pagan, White).  
-2. **Serial Correlation Tests** (e.g., Durbin-Watson, Breusch-Godfrey).  
-3. **Cross-Sectional Dependence Tests** (e.g., Pesaran's CD, Breusch-Pagan LM).  
-4. **Normality Test of Errors** (e.g., Shapiro-Wilk, Jarque-Bera).  
+3. **Stationarity Tests** (e.g., Augmented Dickey-Fuller.  
 
 #### **Fixed Effects (FE):**
 1. **F-Test for Fixed Effects**.  
-2. **Serial Correlation Tests** (e.g., Durbin-Watson, Breusch-Godfrey).  
-3. **Cross-Sectional Dependence Tests** (e.g., Pesaran's CD, Breusch-Pagan LM).  
-
-#### **Random Effects (RE):**
-1. **Hausman Test** (FE vs. RE).  
-2. **Breusch-Pagan Lagrange Multiplier (LM) Test** (for RE necessity).  
-3. **Heteroskedasticity Tests** (e.g., Breusch-Pagan, White).  
-4. **Normality Test for Random Effects** (e.g., Shapiro-Wilk, Jarque-Bera).  
 

@@ -20,14 +20,8 @@ To what extent can macroeconomic and demographic indicators predict the growth i
 
 ### METHODOLOGY (WORK IN PROGRESS)
 
-This paper applies Pooled OLS (POLS), Fixed Effects (FE), and Random Effects (RE) models to analyze the determinants of electric vehicle (EV) sales from 2011 to 2023.
 
-Features were selected for modeling based on one of two criteria. The first was to include any features that found academic support in the forecast or explanation of EV sales, or price phenomena, and use these as a baseline result. The second, was to select features that had been reported by experts as being likely causes, or otherwise factors with respect to our target, even if the claim had not been made within a strict academic context; and use these to see if we could improve on the baseline results.
-
-To ensure the robustness of the results, several general diagnostic tests were conducted. These included testing for multicollinearity using the Variance Inflation Factor (VIF), examining model specification with the Ramsey RESET test, checking for stationarity using the Augmented Dickey-Fuller test, and identifying outliers and influential observations through Cook’s Distance and Leverage.
-
-For the POLS model, heteroskedasticity was assessed using the Breusch-Pagan test, serial correlation was tested with the Durbin-Watsontest, cross-sectional dependence was evaluated with Breusch-Pagan LM tests, and the normality of errors was checked using the Shapiro-Wilk test.
-
-In the Fixed Effects model, the F-test was used to confirm the significance of fixed effects, and serial correlation and cross-sectional dependence were tested in the same way as in the POLS model.
 
 ### MODELING
+
+
