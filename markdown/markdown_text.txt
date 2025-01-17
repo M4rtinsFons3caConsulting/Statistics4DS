@@ -1,19 +1,33 @@
 ### GLOSSARY
 
+EU - European Union
 EV - (Electric Vehicle)
+IEA - Internation Energy Association
+
+### INTRODUCTION
+
+In the Global EV Outlook 2024 (EVO2024), published on April 23, 2024, the IEA projected that by the end of the year, one in every five cars sold globally would be electric. Worldwide sales of this powertrain class were expected to peak at 17 million units, reflecting an increase from 18% of all car sales in the previous year. While these figures suggest a world undergoing rapid yet consistent change, they risk oversimplifying the situation, as the agency also reported that more than half of all electric vehicles were manufactured in China, a market that accounted for 60% of all EV sales during the same period.
+
+The same report also highlighted a critical point: "The pace at which electric car sales pick up in emerging and developing economies outside China will determine their global success." While in contrasting sentiment, the New York Times quoted the director of the Center for Automotive Research in Bochum, Germany, who observed, “The Chinese are winning market share, and the Germans are losing.”
+
+By the last quarter of 2024, the European Union had imposed heavy tariffs on several Chinese automakers, a move aimed at addressing a growing competitive imbalance, “starting to hit the safe places that Western carmakers had,” with many European factories reportedly “making fewer cars than they were built to produce.” Anton Spisak of the Centre for European Reform claims that at the core of China's competitive advantage lies its lower battery production costs, a significant factor driving its dominance in the EV sector, further questioning if the EU's course of action was adequate to meet its stated goal of regaining competitiveness in the automotive industry within a five-year period.
+
+This geopolitical and economic rivalry raises a pertinent question: if public perception exalts the triumph of EVs as inevitable, should it not be possible to explain a substantial portion of EV sales using simple macroeconomic and demographic indicators? Such a notion suggests that the EV’s rise might be more easily predictable than the complexities of global competition imply.
 
 ### RESEARCH QUESTION
 
-This paper aims to explain EV sales data through a two part model, that consists of a set of global variables, and another of country level variables.
+To what extent can macroeconomic and demographic indicators predict the growth in Electric Vehicle (EV) sales across different countries, and how do these relationships vary when accounting for individual country characteristics (Fixed Effects) and unobserved country-specific heterogeneity (Random Effects)? Moreover, does the inclusion of global macroeconomic factors (e.g., global oil prices, lithium) affect the significance of country-specific factors (FE and RE), and does it suggest a general trend in EV adoption that transcends regional differences?
 
-### METHODOLOGY
+### METHODOLOGY (WORK IN PROGRESS)
 
-We consider a fixed effects model, and attempt to reduce the FE to as close to zero as possible; implying that all of the available information on sales is captured by the global variables.
+This paper applies Pooled OLS (POLS), Fixed Effects (FE), and Random Effects (RE) models to analyze the determinants of electric vehicle (EV) sales from 2011 to 2023.
 
-# Feature selection
+Features were selected for modeling based on one of two criteria. The first was to include any features that found academic support in the forecast or explanation of EV sales, or price phenomena, and use these as a baseline result. The second, was to select features that had been reported by experts as being likely causes, or otherwise factors with respect to our target, even if the claim had not been made within a strict academic context; and use these to see if we could improve on the baseline results.
 
-Features were selected for modeling based on one of two criteria. First those that garnered academic support in the forecast/explanation of EV sales, or price phenomena were admitted into the initial model, as a baseline. 
+To ensure the robustness of the results, several general diagnostic tests were conducted. These included testing for multicollinearity using the Variance Inflation Factor (VIF), examining model specification with the Ramsey RESET test, checking for stationarity using the Augmented Dickey-Fuller test, and identifying outliers and influential observations through Cook’s Distance and Leverage.
 
-Then secondly, combinations of select variables were subject to grid search under the condition of minimizing FE.
+For the POLS model, heteroskedasticity was assessed using the Breusch-Pagan test, serial correlation was tested with the Durbin-Watsontest, cross-sectional dependence was evaluated with Breusch-Pagan LM tests, and the normality of errors was checked using the Shapiro-Wilk test.
 
+In the Fixed Effects model, the F-test was used to confirm the significance of fixed effects, and serial correlation and cross-sectional dependence were tested in the same way as in the POLS model.
 
+### MODELING

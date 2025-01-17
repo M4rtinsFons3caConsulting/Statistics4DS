@@ -1,20 +1,29 @@
-# Citations for data 
+## Data
 
-# Sales Info
+1. EV Sales data Sales Info
 IEA (2024), Global EV Outlook 2024, IEA, Paris https://www.iea.org/reports/global-ev-outlook-2023, Licence: CC BY 4.0
 
-# World Bank data
+2. World Bank Global Economic Monitor Data
 World Bank. (2025). Global Economic Monitor (GEM). Data retrieved from World Bank DataBank: https://databank.worldbank.org/source/global-economic-monitor-(gem)
 
-# WTI oil price data
+2. Statista WTI price data
 Statista. (n.d.). Average annual West Texas Intermediate (WTI) crude oil price from 1976 to 2024 (in U.S. dollars per barrel). Retrieved January 14, 2025, from https://www.statista.com/statistics/266659/west-texas-intermediate-oil-prices/
 
-## Justification for variable choice
 
+## Methodology
 
-# Justificaiton for several variables
+1. Justification for several variable choices
 Kovárník, R. & Staňková, M. Determinants of Electric Car Sales in Europe. LOGI – Scientific Journal on Transport and Logistics, 2021, Sciendo, vol. 12 no. 1, pp. 214-225. https://doi.org/10.2478/logi-2021-0020
 
-# Justification for several variables
+2. Justification for several variable choices(2)
 Yeh, Jen-Yin & Wang, Yu-Ting. (2023). A Prediction Model for Electric Vehicle Sales Using Machine Learning Approaches. Journal of Global Information Management. 31. 1-21. 10.4018/JGIM.327277. 
 
+## Introduction
+
+1. Centre for European Reform Article:
+Centre for European Reform. (n.d.). The EU’s drive on China: What EV tariffs mean for Europe. Retrieved from https://www.cer.eu/insights/eus-drive-china-what-ev-tariffs-mean-europe
+
+2. New York Times Article:
+Bowles, N. (2024, December 15). Automakers face trouble amid electric vehicle shift. The New York Times. Retrieved from https://www.nytimes.com/2024/12/15/business/automakers-trouble.html
+
+3. European Commission. (2024). Commission adopts new measures to accelerate EV transition and strengthen EU industry. Retrieved from https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5589
