@@ -1,8 +1,0 @@
----
-
-### **General Tests:**
-3. **Stationarity Tests** (e.g., Augmented Dickey-Fuller.  
-
-#### **Fixed Effects (FE):**
-1. **F-Test for Fixed Effects**.  
-

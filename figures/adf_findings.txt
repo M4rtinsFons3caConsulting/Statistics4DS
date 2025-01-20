@@ -1,6 +1,0 @@
-Stationary with trend
-
-CHN, pm25(5%)
-FRA, unemp (10%)
-JPN, evsales(5%), co2emit(5%)
-USA, co2emit(5%)
