@@ -1,5 +1,6 @@
 .Rproj.user
 .Rhistory
 .Rprofile
-/renv
+.RData
 Statistics4DS.Rproj
+/renv
