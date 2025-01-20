@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+
+
+
+<title> Causal Effects of Electric Vehicles Around the World</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 65.1in 40in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 45px;
+width: 65.1in;
+height: 40in;
+padding: 0;
+text-align: justify;
+font-family: Palatino;
+}
+.poster_wrap {
+width: 65.1in;
+height: 40in;
+padding: 0cm;
+}
+.title_container {
+width: 65.1in;
+height: calc(40in * 0.15);
+overflow: hidden;
+background-color: #0b4545;
+border: 0 solid #0b4545;
+}
+.logo_left {
+float: left;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.logo_right {
+float: right;
+width: 10%;
+height: 100%;
+background-color: #0b4545;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.poster_title {
+text-align: center;
+position: relative;
+float: left;
+width: 80%;
+height: 100%;
+color: #FFFFFF;
+top: 50%;
+transform: translateY(-50%);
+-webkit-transform: translateY(-50%);
+}
+#title {
+font-family: Palatino;
+}
+/* unvisited link */
+a:link {
+color: #cc0000;
+}
+.mybreak {
+  break-before: column;
+}
+/* visited link */
+a:visited {
+color: #cc0000;
+}
+
+/* mouse over link */
+a:hover {
+color: #cc0000;
+}
+
+/* selected link */
+a:active {
+color: #cc0000;
+}
+.poster_body {
+-webkit-column-count: 4; /* Chrome, Safari, Opera */
+-moz-column-count: 4; /* Firefox */
+column-count: 4;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: 1mm;
+-moz-column-rule-width: 1mm;
+column-rule-width: 1mm;
+-webkit-column-rule-style: dashed;
+-moz-column-rule-style: dashed;
+column-rule-style: dashed;
+-webkit-column-rule-color: #0b4545;
+-moz-column-rule-color: #0b4545;
+column-rule-color: #0b4545;
+column-gap: 1em;
+padding-left: 0.5em;
+padding-right: 0.5em;
+height: 100%;
+color: #000000
+background-color: #ffffff;
+}
+.poster_title h1 {
+font-size: 75pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+width: calc(65.1in + 0 + 0);
+height: calc(40in * 0.83);
+padding-top: calc(40in * 0.005);
+padding-bottom: calc(40in * 0.01);
+background-color: #ffffff;
+}
+.poster_title h3 {
+color: #ffffff;
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_title h3 > sup {
+  font-size: 35pt;
+  margin-left: 0.02em;
+}
+.poster_title h5 {
+color: #FFFFFF;
+font-size: 35pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+img {
+margin-top: 2cm;
+margin-bottom: 0;
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+text-align: center;
+color: #FFFFFF;
+font-size: 65pt;
+border: 2mm solid #0b4545;
+background-color: #0b4545;
+border-radius: 4mm 0mm;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: normal;
+}
+.poster_body h2 {
+color: #000000;
+font-size: 40pt;
+padding-left: 4mm;
+font-weight: normal;
+}
+.span {
+width: 200%;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 1em;
+font-family: monospace;
+background-color: #00808024;
+color: #0b4545;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+.poster_title code {
+font-size: 1em;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-right: 4mm;
+margin-left: 4mm;
+margin-top: 6mm;
+margin-bottom: 10mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+.references p {
+font-size: 20pt;
+}
+.orcid img {
+  width: 1em;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+<div class="title_container">
+<!-- Left Logo  -->
+<div class="logo_left">
+</div>
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title"><br>Causal Effects of Electric Vehicles Around the World</h1>
+<h3 id="author">Paulo Martins r2015469<sup>1</sup>, Beatriz Fonseca r20201599<sup>1</sup></h3><br>
+<h5 id="affiliation"><sup>1</sup> Nova Information Management School</h5>
+</div>
+<!-- Right Logo  -->
+<div class="logo_right">
+</div>
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1><strong>Introduction</strong></h1>
+<p>In the Global EV Outlook 2024 (EVO2024), published on April 23, 2024, the IEA projected that by the end of the year, one in every five cars sold globally would be electric. Worldwide sales of this powertrain class were expected to peak at 17 million units, reflecting an increase from 18% of all car sales in the previous year. While these figures suggest a world undergoing rapid yet consistent change, they risk oversimplifying the situation, as the agency also reported that more than half of all electric vehicles were manufactured in China, a market that accounted for 60% of all EV sales during the same period.</p>
+<p>The same report also highlighted a critical point: “The pace at which electric car sales pick up in emerging and developing economies outside China will determine their global success.” While in contrasting sentiment, the New York Times quoted the director of the Center for Automotive Research in Bochum, Germany, who observed, “The Chinese are winning market share, and the Germans are losing.” [1]</p>
+<p>By the last quarter of 2024, the European Union had imposed heavy tariffs on several Chinese automakers, a move aimed at addressing a growing competitive imbalance, “starting to hit the safe places that Western carmakers had,” with many European factories reportedly “making fewer cars than they were built to produce.” Anton Spisak of the Centre for European Reform [2] claims that at the core of China’s competitive advantage lies its lower battery production costs, a significant factor driving its dominance in the EV sector, further questioning if the EU’s course of action was adequate to meet its stated goal of regaining competitiveness in the automotive industry within a five-year period.</p>
+<p>This geopolitical and economic rivalry raises a pertinent question: if public perception exalts the triumph of EVs as inevitable, should it not be possible to explain a substantial portion of EV sales using simple macroeconomic and demographic indicators? Such a notion suggests that the EV’s rise might be more easily predictable than the complexities of global competition imply. [3]</p>
+</div>
+<div id="research-question" class="section level1">
+<h1><strong>Research Question</strong></h1>
+<p>To what extent can macroeconomic and demographic indicators predict the growth in Electric Vehicle (EV) sales across different countries, and how do these relationships vary when accounting for individual country characteristics (Fixed Effects) and unobserved country-specific heterogeneity (Random Effects)?</p>
+</div>
+<div id="methodology" class="section level1">
+<h1><strong>Methodology</strong></h1>
+<p>To address this research question, we initially selected variables based on the criteria and methodologies outlined in [4] and [5]. Subsequently, we identified and added new variables that we believed could provide additional insights. Our first step was to evaluate the relationships among these variables, specifically checking for high correlations between any of the newly introduced variables and those from our original selection. The data for this analysis, which included electric vehicle sales, macroeconomic indicators (e.g., GDP), air pollution, and renewable energy consumption, was collected from various sources. [6] [7] [8]</p>
+<p>The dataset was mostly complete, with very few missing entries, which were imputed using linear interpolation of the respective country’s time series. We explored various mathematical transformations, such as squaring, square roots, logarithms, and first differences, to identify those that could be useful for our model specification.</p>
+<p>We began with a baseline specification that included all academically validated variables to test different model types using statistical tests. The model that performed the best on the statistical tests was then selected, and a final specification that optimized for maximized explained variance (R²) and minimized robust standard errors was chosen.</p>
+<p>The models tested were Pooled OLS, Fixed Effects, Random Effects and Mixed Effects and the statistical tests were Lagrange Multiplier, Breusch-Pagan, Robust Hausman and the Breusch–Godfrey Test. When applicable, robust standard errors were computed using the covariance matrix appropriate for the statistical properties of each model.</p>
+</div>
+<div id="results" class="section level1">
+<h1><strong>Results</strong></h1>
+<p>The plot shows a clear exponential growth curve with respect to the sale of electric vehicles, as we would expect, given the analysis provided by the IEA in EV Outlook 2024. This immediately placed a ceiling on the expected utility of our modelling, as exponential growth phenomena can only be approximated by linear models in the short term.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="poster_markdown_files/figure-html/unnamed-chunk-2-1.png" alt="Figure 1 - EV Sales across countries" width="100%" />
+<p class="caption">
+Figure 1: Figure 1 - EV Sales across countries
+</p>
+</div>
+<p>First, we assessed the presence of panel effects in our data applying the Lagrange Multiplier test to the Pooled OLS model. Having confirmed the presence of panel effects, we proceeded to compute the Breush Pagan and the Breush Godfrey tests for all models. We concluded that there was heteroskedasticity and residual serial correlation, independent of the model used. To account for this, we report the robust standard errors using HC3 - moderately penalizing high leverage observations - and the Arellano method specifically designed to address the computation of the covariance matrix under the assumption of heteroskedasticity and serial correlation.</p>
+<table>
+<caption>Table 1 - Panel Data Analysis</caption>
+<colgroup>
+<col width="27%" />
+<col width="24%" />
+<col width="24%" />
+<col width="24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Test</th>
+<th>P-value</th>
+<th>H0</th>
+<th>Conclusion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lagrange Multiplier</td>
+<td>1.726e⁻¹⁰</td>
+<td>No Panel Effects</td>
+<td>Has Panel Effects</td>
+</tr>
+<tr class="even">
+<td>Breusch Pagan (all models)</td>
+<td>2e⁻¹⁶</td>
+<td>Homoskedasticity</td>
+<td>Heteroskedasticity</td>
+</tr>
+<tr class="odd">
+<td>Breusch Godfrey (all models)</td>
+<td>2e⁻¹⁶</td>
+<td>No Residual Serial Correlation</td>
+<td>Residuals serially correlated</td>
+</tr>
+<tr class="even">
+<td>Robust Hausman</td>
+<td>0.4675</td>
+<td>Use Random Effects</td>
+<td>Use Random Effects</td>
+</tr>
+</tbody>
+</table>
+<p>Below, we report the models results, featuring the estimators’ importance.</p>
+<table style="width:100%;">
+<caption>Table 2 - Estimator importance</caption>
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>gdp</th>
+<th>pm25exp_<br>square</th>
+<th>co2emit</th>
+<th>co2emit_<br>diff</th>
+<th>factor<br>(Country)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pooled OLS</td>
+<td>0.03756 *</td>
+<td>0.03184 *</td>
+<td>2e⁻¹⁶ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>FE</td>
+<td>0.008461 **</td>
+<td>0.009028 **</td>
+<td>2e⁻¹⁶ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>Robust FE</td>
+<td>.05482 .</td>
+<td>3.377e⁻⁵ ***</td>
+<td>5.023e⁻⁵ ***</td>
+<td>0.27481</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>RE</td>
+<td>0.03691 *</td>
+<td>0.03123 *</td>
+<td>2e⁻¹⁶ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>Robust RE</td>
+<td>0.120033</td>
+<td>0.020965 *</td>
+<td>0.0007998 ***</td>
+<td>0.361396</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Mixed FE</td>
+<td>2e⁻¹⁶ ***</td>
+<td>1.653e⁻¹⁴ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Robust Mixed FE</td>
+<td>2.388e⁻⁶ ***</td>
+<td>0.2254487</td>
+<td>5.123e⁻¹⁴ ***</td>
+<td>0.0848060 .</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Mixed RE</td>
+<td>2e⁻¹⁶ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>2e⁻¹⁶ ***</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Robust Mixed RE</td>
+<td>4.551e⁻⁵ ***</td>
+<td>0.2452769</td>
+<td>5.227e⁻¹³ ***</td>
+<td>0.1347671</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<table style="width:100%;">
+<caption>Table 3 - Best Model Specification</caption>
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Robust Mixed FE</th>
+<th>gdp *</th>
+<th>pm25exp_<br>square</th>
+<th>co2emit *</th>
+<th>co2emit_diff</th>
+<th>factor<br>(Country) *</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estimate</td>
+<td>0.46899</td>
+<td>0.39887</td>
+<td>0.90779</td>
+<td>-1.9012</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Robust SE</td>
+<td>0.097758</td>
+<td>0.32847</td>
+<td>0.11561</td>
+<td>1.1</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>The Robust Mixed Fixed Effects (RMFE) model provided a balance between the performance of the Fixed Effects model while accounting for heteroskedasticity of the data. It was able to explain 86% of the variability (adjusted R² of 0.86) of the outcome variable (<em>evsales</em>), with a very high F-statistic (69.8968, 36, 348), associated with the low p-value of 2.22e⁻¹⁶, indicating an overall jointly statistically significant model.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1><strong>Conclusions</strong></h1>
+<p>Overall, the academically validated variables proved to be a good baseline for modelling. However, the RMFE model only showed significance for GDP and CO2 emissions, as well as intrinsic country effects, in the explanation of electric vehicles sales.</p>
+<p>Despite the promising results, because mixed effects models are hard to compare against fixed effects models directly, under our assumptions, we fail to conclude definitively on the best model.</p>
+<p>Regardless, these results are clear evidence that much of the variability in the sale of electric vehicles can be explained by making use of rather simple macroeconomic indicators.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1><strong>Next Steps</strong></h1>
+<p>In the future, this work would greatly benefit of testing mixed effects linear regression models using a more dedicated library, such as <em>lme4</em>, or even other types of non-linear regression models.</p>
+</div>
+<div id="references" class="section level1">
+<h1><strong>References</strong></h1>
+<ol style="list-style-type: decimal">
+<li><p>New York Times Article: Bowles, N. (2024, December 15). Automakers face trouble amid electric vehicle shift. The New York Times. Retrieved from <a href="https://www.nytimes.com/2024/12/15/business/automakers-trouble.html" class="uri">https://www.nytimes.com/2024/12/15/business/automakers-trouble.html</a></p></li>
+<li><p>Centre for European Reform Article: Centre for European Reform. (n.d.). The EU’s drive on China: What EV tariffs mean for Europe. Retrieved from <a href="https://www.cer.eu/insights/eus-drive-china-what-ev-tariffs-mean-europe" class="uri">https://www.cer.eu/insights/eus-drive-china-what-ev-tariffs-mean-europe</a></p></li>
+<li><p>European Commission. (2024). Commission adopts new measures to accelerate EV transition and strengthen EU industry. Retrieved from <a href="https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5589" class="uri">https://ec.europa.eu/commission/presscorner/detail/en/ip_24_5589</a></p></li>
+<li><p>Kovárník, R. &amp; Staňková, M. Determinants of Electric Car Sales in Europe. LOGI – Scientific Journal on Transport and Logistics, 2021, Sciendo, vol. 12 no. 1, pp. 214-225. <a href="https://doi.org/10.2478/logi-2021-0020" class="uri">https://doi.org/10.2478/logi-2021-0020</a></p></li>
+<li><p>Yeh, Jen-Yin &amp; Wang, Yu-Ting. (2023). A Prediction Model for Electric Vehicle Sales Using Machine Learning Approaches. Journal of Global Information Management. 31. 1-21. 10.4018/JGIM.327277.</p></li>
+<li><p>EV Sales data Sales Info IEA (2024), Global EV Outlook 2024, IEA, Paris <a href="https://www.iea.org/reports/global-ev-outlook-2023" class="uri">https://www.iea.org/reports/global-ev-outlook-2023</a>, Licence: CC BY 4.0</p></li>
+<li><p>World Bank Global Economic Monitor Data World Bank. (2025). Global Economic Monitor (GEM). Data retrieved from World Bank DataBank: <a href="https://databank.worldbank.org/source/global-economic-monitor-(gem)" class="uri">https://databank.worldbank.org/source/global-economic-monitor-(gem)</a></p></li>
+<li><p>World Bank World Development Indicators Data World Bank. (2025). World Development Indicators (WDI). Data retrieved from World Bank DataBank: <a href="https://databank.worldbank.org/source/global-economic-monitor-(gem)" class="uri">https://databank.worldbank.org/source/</a><a href="https://databank.worldbank.org/source/world-development-indicators" class="uri">world-development-indicators</a></p></li>
+</ol>
+</div>
+</div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>

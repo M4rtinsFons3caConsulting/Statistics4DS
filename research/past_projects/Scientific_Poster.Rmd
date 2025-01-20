@@ -23,33 +23,23 @@ knitr::opts_chunk$set(
 )
 ```
 # **Introduction**
-```{r, include=FALSE}
-df <- readxl::read_excel("C:") # Consider dynamic pathing
-```
-```{r echo=FALSE, out.width='100%', fig.align='center', fig.cap='Figure 1. Template 1'}
-```
+
 # **Goals**
 This research project sets out to study the relationship between import tariffs and vehicle import, to and from the U.S., Chinese, and E.U. Markets, and therefore measure the effectivness of said public policy.
 
-```{r echo=FALSE, out.width='100%', fig.align='center', fig.cap='Figure 2. Figure 2 template.'}
-```
+
 # **Methodology**
 TODO: Determined the methodologies to be used.
-```{r echo=FALSE, out.width='100%', fig.align='center', fig.cap='Figure 3. Figure 3 template.'}
-```
+
 # **Results**
 The results obtained should always be presented as a confidence interval.
 ```{r echo=FALSE}
 ```
 ```{r echo=FALSE}
 ```
-```{r echo=FALSE, fig.cap='Table 1. '}
-```
-```{r echo=FALSE, out.width='100%', fig.align='center', fig.cap='Figure 4. Figure 4 template'}
-```
+
 # **Conclusions**
-```{r echo=FALSE, out.width='100%', fig.align='center', fig.cap='Figure 5. Figure 5 template'}
-```
+
 # **References**
 Hyndman, R., & Athanasopoulos, G. (2021). Forecasting: Principles and Practice. (3rd ed.) OTexts. <https://otexts.com/fpp3/>
 SHAPIRO, S. S., & WILK, M. B. (1965). An analysis of variance test for normality (complete samples). Biometrika, 52(3--4), 591--611. <https://doi.org/10.1093/biomet/52.3-4.591>

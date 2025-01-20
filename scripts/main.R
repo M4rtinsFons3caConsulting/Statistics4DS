@@ -149,8 +149,7 @@ corrplot(corr_matrix, method = "circle", type = "upper",
          tl.col = "black", tl.srt = 90, diag = FALSE)
 
 p_dataframe <- pdata.frame(dataframe, index = c('year', 'country')) 
-############################ SCALING ###########################################
-#p_dataframe[sapply(p_dataframe, is.numeric)] <- scale(p_dataframe[sapply(p_dataframe, is.numeric)])
+
 ############################ SPECIFICATION #####################################
 model_specification <- evsales ~ gdp + pm25exp_square + co2emit + co2emit_diff
 ############################ MODEL ANALYSIS ####################################
@@ -183,12 +182,12 @@ analysis_routine <- function(formula, dataframe, model_type) {
   bp <- bptest(model, studentize = TRUE)
   print(bp)
   
-  # GENERALIZED DURBIN-WATSON FOR AUTOCORRELATION
-  dub_wat <- pbgtest(model)
-  print(dub_wat)
+  # BREUSCH–GODFREY TEST
+  pbg <- pbgtest(model)
+  print(pbg)
   
   if (bp$p.value < 0.05) {
-    if (dub_wat$p.value < 0.05) {
+    if (pbg$p.value < 0.05) {
       print(coeftest(model, vcov = vcovHC(model, method = 'arellano', type = "HC3", cluster = 'time')))
     } else {
       print(coeftest(model, vcov = vcovHC(model, method = 'white2', type = "HC3")))
