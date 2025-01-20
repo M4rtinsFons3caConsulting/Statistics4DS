@@ -2,5 +2,5 @@
 .Rhistory
 .Rprofile
 .RData
-Statistics4DS.Rproj
 /renv
+!/renv.lock
